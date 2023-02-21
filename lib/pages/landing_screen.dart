@@ -6,6 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:fluid_dialog/fluid_dialog.dart';
 import 'package:provider/provider.dart';
 
+import '../widgets/dobWIdget.dart';
 import '../widgets/emailDialog.dart';
 import '../widgets/genderWidget.dart';
 import '../widgets/phoneNumberWidget.dart';
@@ -124,32 +125,7 @@ class _LandingScreenState extends State<LandingScreen> {
               EmailWidget(email: value.dataValue[0].email!),
               PhoneNumberWidget(phoneNumber: value.dataValue[0].phone!),
               GenderWidget(gender: value.dataValue[0].gender!),
-              ListTile(
-                  leading: Padding(
-                    padding: const EdgeInsets.only(top: 5, left: 10),
-                    child: FaIcon(
-                      FontAwesomeIcons.calendarDays,
-                      color: Theme.of(context).primaryColor,
-                    ),
-                  ),
-                  title: Text(
-                    "Date of Birth",
-                    style: TextStyle(
-                        color: Theme.of(context).primaryColor,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  subtitle: Text(
-                    "20/02/2023",
-                    style: TextStyle(
-                        color: Theme.of(context).secondaryHeaderColor,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  trailing: IconButton(
-                      onPressed: () {},
-                      icon: FaIcon(
-                        FontAwesomeIcons.edit,
-                        color: Colors.black,
-                      ))),
+              DOBWidget(),
               ListTile(
                 leading: Padding(
                   padding: const EdgeInsets.only(top: 8, left: 10),

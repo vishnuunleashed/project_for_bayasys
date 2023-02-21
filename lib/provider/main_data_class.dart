@@ -11,6 +11,13 @@ class MainData extends ChangeNotifier{
   static String password = "";
   List<MainDataModal> dataValue = [];
 
+  DateTime? selectedDay;
+
+  void setSelectedDay(DateTime date){
+    selectedDay = date;
+    notifyListeners();
+  }
+
 
   setEmail(BuildContext context,String email){
     MainData.email = email;
