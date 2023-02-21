@@ -9,23 +9,6 @@ import '../modal/main_data_modal.dart';
 class MainData extends ChangeNotifier{
      String email = "";
      String password = "";
-
-     int? id;
-     String? name;
-
-     String? phone;
-     String? gender;
-     String? dob;
-     String? maritalStatus;
-     String? occupation;
-     String? tradingXp;
-     String? gir;
-     String? address;
-     String? profilePic;
-     String? aadharOne;
-     String? aadharTwo;
-     String? panPic;
-
   List<MainDataModal> dataValue = [];
 
   DateTime? selectedDay;

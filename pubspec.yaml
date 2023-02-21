@@ -44,6 +44,7 @@ dependencies:
   path_provider: ^2.0.12
   table_calendar: ^3.0.9
   intl: ^0.18.0
+  shared_preferences: ^2.0.17
 
 
 

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import '../pages/aadhar_screen.dart';
 class AadharWidget extends StatefulWidget {
   String status;
   AadharWidget({required this.status});
@@ -32,7 +34,9 @@ class _AadharWidgetState extends State<AadharWidget> {
             fontWeight: FontWeight.bold),
       ),
       trailing: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>AadharScreen()));
+          },
           icon: FaIcon(
             FontAwesomeIcons.edit,
             color: Colors.black,
