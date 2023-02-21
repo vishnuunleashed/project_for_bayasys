@@ -1,5 +1,7 @@
 import 'package:bayasys/pages/landing_screen.dart';
+import 'package:bayasys/provider/main_data_class.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../dialog/showSnackBar.dart';
 
@@ -21,15 +23,31 @@ class _LoginScreenState extends State<LoginScreen> {
 
     if (_form!.validate()) {
       _form.save();
-      if(username == "admin" && password == "admin"){
-        showSuccess(context,"Login Success");
-        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>LandingScreen()));
-      }else{
-        showError(context,"Wrong Credentials");
-      }
+
+        bool response = await context.read<MainData>().login(email: username, password: password);
+        if(response == true){
+          showSuccess(context,"Login Success");
+          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>LandingScreen()));
+        }else{
+          showError(context,"Wrong Credentials");
+        }
+
 
     }
   }
+
+   register(BuildContext context) async {
+    final _form = formKey.currentState;
+
+    if (_form!.validate()) {
+      _form.save();
+      context.read<MainData>().insertAtRegister(context: context,email: username,password: password);
+      showSuccess(context, "Registration Completed");
+
+    }
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,12 +73,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     onSaved: (val) {
                       username = val;
                     },
-                    validator: (input) => input!.length < 3
+                    validator: (input) => !input!.contains('@')
                         ? "Should be more valid username"
                         : null,
                     decoration: InputDecoration(
                       contentPadding: EdgeInsets.all(20),
-                      hintText: 'username',
+                      hintText: 'email',
                       hintStyle:
                       TextStyle(color: Colors.black.withOpacity(0.5)),
                       prefixIcon: Icon(Icons.accessibility,
@@ -139,7 +157,15 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   onPressed: (){
                     login(context);
-                  }, child: Text("Login"))
+                  }, child: Text("Login")),
+              SizedBox(height: 15,),
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Theme.of(context).primaryColor
+                  ),
+                  onPressed: (){
+                    register(context);
+                  }, child: Text("Register"))
 
 
             ],

@@ -1,4 +1,5 @@
 import 'package:bayasys/pages/landing_screen.dart';
+import 'package:bayasys/pages/login.dart';
 import 'package:bayasys/provider/main_data_class.dart';
 import 'package:bayasys/sqflite/main_db.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +7,7 @@ import 'package:provider/provider.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await DataBaseClass.initializeDatabase();
+  await MainData.initializeDatabase();
   runApp(const MyApp());
 }
 
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
           primaryColor: Color(0xff01577b),
           secondaryHeaderColor: Colors.black.withOpacity(0.6)
         ),
-        home: const LandingScreen(),
+        home: const LoginScreen(),
       ),
     );
   }
