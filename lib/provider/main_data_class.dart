@@ -7,8 +7,8 @@ import 'package:sqflite/sqflite.dart';
 import '../modal/main_data_modal.dart';
 
 class MainData extends ChangeNotifier{
-  static String email = "demo@demo.com";
-  static String password = "";
+     String email = "";
+     String password = "";
   List<MainDataModal> dataValue = [];
 
   DateTime? selectedDay;
@@ -20,7 +20,7 @@ class MainData extends ChangeNotifier{
 
 
   setEmail(BuildContext context,String email){
-    MainData.email = email;
+    email = email;
     Navigator.of(context).pop();
     notifyListeners();
   }
@@ -59,8 +59,8 @@ class MainData extends ChangeNotifier{
   }
 
   Future login({required String email,required String password}) async {
-    MainData.email = email;
-    MainData.password = password;
+    this.email = email;
+    this.password = password;
 
     final responses = await db.rawQuery(
         "SELECT * FROM profile WHERE email = '$email' AND password = '$password' ");

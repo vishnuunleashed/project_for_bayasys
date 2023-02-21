@@ -43,6 +43,7 @@ dependencies:
   sqflite: ^2.2.4+1
   path_provider: ^2.0.12
   table_calendar: ^3.0.9
+  intl: ^0.18.0
 
 
 

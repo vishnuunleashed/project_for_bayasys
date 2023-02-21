@@ -1,14 +1,21 @@
 import 'package:bayasys/provider/main_data_class.dart';
-import 'package:bayasys/sqflite/main_db.dart';
+import 'package:bayasys/widgets/addressWidget.dart';
+
 import 'package:bayasys/widgets/emailWidget.dart';
+import 'package:bayasys/widgets/panWidget.dart';
+import 'package:bayasys/widgets/tradingExp.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:fluid_dialog/fluid_dialog.dart';
 import 'package:provider/provider.dart';
 
+import '../widgets/aadharWidget.dart';
 import '../widgets/dobWIdget.dart';
 import '../widgets/emailDialog.dart';
 import '../widgets/genderWidget.dart';
+import '../widgets/girWdiget.dart';
+import '../widgets/maritalStatus.dart';
+import '../widgets/occupationWidget.dart';
 import '../widgets/phoneNumberWidget.dart';
 import '../widgets/userIdWidget.dart';
 
@@ -126,195 +133,13 @@ class _LandingScreenState extends State<LandingScreen> {
               PhoneNumberWidget(phoneNumber: value.dataValue[0].phone!),
               GenderWidget(gender: value.dataValue[0].gender!),
               DOBWidget(),
-              ListTile(
-                leading: Padding(
-                  padding: const EdgeInsets.only(top: 8, left: 10),
-                  child: FaIcon(
-                    FontAwesomeIcons.userGroup,
-                    color: Theme.of(context).primaryColor,
-                  ),
-                ),
-                title: Text(
-                  "Marital Status",
-                  style: TextStyle(
-                      color: Theme.of(context).primaryColor,
-                      fontWeight: FontWeight.bold),
-                ),
-                subtitle: Text(
-                  "Single",
-                  style: TextStyle(
-                      color: Theme.of(context).secondaryHeaderColor,
-                      fontWeight: FontWeight.bold),
-                ),
-                trailing: IconButton(
-                    onPressed: () {},
-                    icon: FaIcon(
-                      FontAwesomeIcons.edit,
-                      color: Colors.black,
-                    )),
-              ),
-              ListTile(
-                leading: Padding(
-                  padding: const EdgeInsets.only(top: 5, left: 10),
-                  child: FaIcon(
-                    FontAwesomeIcons.suitcase,
-                    color: Theme.of(context).primaryColor,
-                  ),
-                ),
-                title: Text(
-                  "Occupation",
-                  style: TextStyle(
-                      color: Theme.of(context).primaryColor,
-                      fontWeight: FontWeight.bold),
-                ),
-                subtitle: Text(
-                  "IT",
-                  style: TextStyle(
-                      color: Theme.of(context).secondaryHeaderColor,
-                      fontWeight: FontWeight.bold),
-                ),
-                trailing: IconButton(
-                    onPressed: () {},
-                    icon: FaIcon(
-                      FontAwesomeIcons.edit,
-                      color: Colors.black,
-                    )),
-              ),
-              ListTile(
-                leading: Padding(
-                  padding: const EdgeInsets.only(top: 5, left: 10),
-                  child: FaIcon(
-                    FontAwesomeIcons.chartBar,
-                    color: Theme.of(context).primaryColor,
-                  ),
-                ),
-                title: Text(
-                  "Trading Experience",
-                  style: TextStyle(
-                      color: Theme.of(context).primaryColor,
-                      fontWeight: FontWeight.bold),
-                ),
-                subtitle: Text(
-                  "1-3 years",
-                  style: TextStyle(
-                      color: Theme.of(context).secondaryHeaderColor,
-                      fontWeight: FontWeight.bold),
-                ),
-                trailing: IconButton(
-                    onPressed: () {},
-                    icon: FaIcon(
-                      FontAwesomeIcons.edit,
-                      color: Colors.black,
-                    )),
-              ),
-              ListTile(
-                leading: Padding(
-                  padding: const EdgeInsets.only(top: 5, left: 10),
-                  child: FaIcon(
-                    FontAwesomeIcons.circleDollarToSlot,
-                    color: Theme.of(context).primaryColor,
-                  ),
-                ),
-                title: Text(
-                  "Gross Income Range",
-                  style: TextStyle(
-                      color: Theme.of(context).primaryColor,
-                      fontWeight: FontWeight.bold),
-                ),
-                subtitle: Text(
-                  "More than 25 Lakh",
-                  style: TextStyle(
-                      color: Theme.of(context).secondaryHeaderColor,
-                      fontWeight: FontWeight.bold),
-                ),
-                trailing: IconButton(
-                    onPressed: () {},
-                    icon: FaIcon(
-                      FontAwesomeIcons.edit,
-                      color: Colors.black,
-                    )),
-              ),
-              ListTile(
-                leading: Padding(
-                  padding: const EdgeInsets.only(top: 5, left: 10),
-                  child: FaIcon(
-                    FontAwesomeIcons.home,
-                    color: Theme.of(context).primaryColor,
-                  ),
-                ),
-                title: Text(
-                  "Address",
-                  style: TextStyle(
-                      color: Theme.of(context).primaryColor,
-                      fontWeight: FontWeight.bold),
-                ),
-                subtitle: Text(
-                  "Bayasys",
-                  style: TextStyle(
-                      color: Theme.of(context).secondaryHeaderColor,
-                      fontWeight: FontWeight.bold),
-                ),
-                trailing: IconButton(
-                    onPressed: () {},
-                    icon: FaIcon(
-                      FontAwesomeIcons.edit,
-                      color: Colors.black,
-                    )),
-              ),
-              ListTile(
-                leading: Padding(
-                  padding: const EdgeInsets.only(top: 5, left: 10),
-                  child: FaIcon(
-                    FontAwesomeIcons.sun,
-                    color: Colors.amber,
-                  ),
-                ),
-                title: Text(
-                  "Adhar / Address Proof",
-                  style: TextStyle(
-                      color: Theme.of(context).primaryColor,
-                      fontWeight: FontWeight.bold),
-                ),
-                subtitle: Text(
-                  "Photo Uploaded",
-                  style: TextStyle(
-                      color: Theme.of(context).secondaryHeaderColor,
-                      fontWeight: FontWeight.bold),
-                ),
-                trailing: IconButton(
-                    onPressed: () {},
-                    icon: FaIcon(
-                      FontAwesomeIcons.edit,
-                      color: Colors.black,
-                    )),
-              ),
-              ListTile(
-                leading: Padding(
-                  padding: const EdgeInsets.only(top: 5, left: 10),
-                  child: FaIcon(
-                    FontAwesomeIcons.buildingColumns,
-                    color: Theme.of(context).primaryColor,
-                  ),
-                ),
-                title: Text(
-                  "Pan ID",
-                  style: TextStyle(
-                      color: Theme.of(context).primaryColor,
-                      fontWeight: FontWeight.bold),
-                ),
-                subtitle: Text(
-                  "Photo Uploaded",
-                  style: TextStyle(
-                      color: Theme.of(context).secondaryHeaderColor,
-                      fontWeight: FontWeight.bold),
-                ),
-                trailing: IconButton(
-                    onPressed: () {},
-                    icon: FaIcon(
-                      FontAwesomeIcons.edit,
-                      color: Colors.black,
-                    )),
-              ),
+              MaritalStatusWiget(maritalStatus: value.dataValue[0].maritalStatus!),
+              OccupationWidget(occupation: value.dataValue[0].occupation!),
+              TradingExpWidget(tradingExp: value.dataValue[0].tradingXp!),
+              GrossIncomeRangeWidget(gitValue: value.dataValue[0].gir!),
+              AddressWidget(address: value.dataValue[0].address!),
+              AadharWidget(status: "Photo Uploaded"),
+              PanWidget(status: "Photo Uploaded"),
               SizedBox(
                 height: 15,
               ),

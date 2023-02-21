@@ -1,5 +1,6 @@
 import 'package:bayasys/provider/main_data_class.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import 'package:table_calendar/table_calendar.dart';
@@ -45,7 +46,7 @@ class _DOBDialogState extends State<DOBDialog> {
               calendarStyle: CalendarStyle(
 
                 selectedDecoration: BoxDecoration(
-                  color: Colors.red,
+                  color: Theme.of(context).primaryColor,
                 ),
 
 
@@ -66,7 +67,8 @@ class _DOBDialogState extends State<DOBDialog> {
                 style: ElevatedButton.styleFrom(
                     backgroundColor: Theme.of(context).primaryColor),
                 onPressed: () {
-                  print(value.selectedDay);
+                  String date = DateFormat('dd-MM-yyyy').format(value.selectedDay!);
+                  print(date);
                 },
                 child: Text("Update"))
           ],
