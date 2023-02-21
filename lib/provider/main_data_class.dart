@@ -9,6 +9,23 @@ import '../modal/main_data_modal.dart';
 class MainData extends ChangeNotifier{
      String email = "";
      String password = "";
+
+     int? id;
+     String? name;
+
+     String? phone;
+     String? gender;
+     String? dob;
+     String? maritalStatus;
+     String? occupation;
+     String? tradingXp;
+     String? gir;
+     String? address;
+     String? profilePic;
+     String? aadharOne;
+     String? aadharTwo;
+     String? panPic;
+
   List<MainDataModal> dataValue = [];
 
   DateTime? selectedDay;
@@ -19,11 +36,7 @@ class MainData extends ChangeNotifier{
   }
 
 
-  setEmail(BuildContext context,String email){
-    email = email;
-    Navigator.of(context).pop();
-    notifyListeners();
-  }
+
 
   static late Database db;
 
@@ -40,16 +53,16 @@ class MainData extends ChangeNotifier{
 
   Future<void> insertInToDB({required String name,required String email,required String phone,required String gender,required String dob,required String maritalStatus,required String occupation,required String tradingXp,required String gir,required String address,required String profilePic,required String aadharOne,required String aadharTwo,required String panPic}) async {
     await db.rawQuery("INSERT INTO profile(name,email,phone,gender,dob,maritalStatus,occupation,tradingXp,gir,address,profilePic,aadharOne,aadharTwo,panPic) VALUES('$name','$email','$phone','$gender','$dob','$maritalStatus','$occupation','$tradingXp','$gir','$address','$profilePic','$aadharOne','$aadharTwo','$panPic')");
-    getDataFromDB();
+
   }
 
   Future<void> insertAtRegister({required BuildContext context,required String email,required String password}) async {
     final responses = await db.rawQuery(
         "SELECT * FROM profile WHERE email = '$email' AND password = '$password' ");
-    getDataFromDB();
+    print(responses);
     if (responses.length == 0){
       await db.rawQuery("INSERT INTO profile(email,password) VALUES('$email','$password')");
-      getDataFromDB();
+
     }else{
 
       showError(context, "Email id exits");
@@ -64,7 +77,7 @@ class MainData extends ChangeNotifier{
 
     final responses = await db.rawQuery(
         "SELECT * FROM profile WHERE email = '$email' AND password = '$password' ");
-    getDataFromDB();
+    print(responses);
     if (responses.length == 1){
       if (responses.isNotEmpty) {
 
@@ -84,19 +97,44 @@ class MainData extends ChangeNotifier{
 
   Future<void> updateDB({required int id,required String name,required String email,required String phone,required String gender,required String dob,required String maritalStatus,required String occupation,required String tradingXp,required String gir,required String address,required String profilePic,required String aadharOne,required String aadharTwo,required String panPic}) async {
     await db.rawQuery("UPDATE profile SET name = '$name',email = '$email',phone = '$phone',gender = '$gender',dob = '$dob',maritalStatus = '$maritalStatus',occupation = '$occupation',tradingXp = '$tradingXp',gir = '$gir',address = '$address') where id = $id");
-    getDataFromDB();
+    getDataFromDB(id: id);
   }
 
 
-  Future<void> getDataFromDB() async {
-    final responses = await db.rawQuery("SELECT * FROM profile WHERE email = '${email}' AND password = '${password}' ");
-    print(responses);
+  Future<void> getDataFromDB({required int id}) async {
+    final responses = await db.rawQuery("SELECT * FROM profile WHERE id = $id");
+
+    dataValue.clear();
     responses.forEach((element) {
       dataValue.add(MainDataModal.fromJson(element));
     });
 
 
   }
+
+     setEmail({required BuildContext context,required String email,required int id}) async {
+       final response = await db.rawQuery("UPDATE profile SET email = '$email' where id = $id");
+       print(response);
+       getDataFromDB(id: id);
+       Navigator.of(context).pop();
+       notifyListeners();
+     }
+
+     setPhone({required BuildContext context,required String phone,required int id}) async {
+       final response = await db.rawQuery("UPDATE profile SET phone = '$phone' where id = $id");
+       print(response);
+       getDataFromDB(id: id);
+       Navigator.of(context).pop();
+       notifyListeners();
+     }
+
+     setGender({required BuildContext context,required String gender,required int id}) async {
+       final response = await db.rawQuery("UPDATE profile SET gender = '$gender' where id = $id");
+       print("response is" + response.toString());
+       getDataFromDB(id: id);
+       Navigator.of(context).pop();
+       notifyListeners();
+     }
 
 
 }

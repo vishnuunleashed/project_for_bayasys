@@ -5,7 +5,8 @@ import 'package:provider/provider.dart';
 
 class EmailDialog extends StatefulWidget {
   String email;
-  EmailDialog({required this.email});
+  int id;
+  EmailDialog({required this.email,required this.id});
 
 
   @override
@@ -63,7 +64,7 @@ class _EmailDialogState extends State<EmailDialog> {
                     backgroundColor: Theme.of(context).primaryColor
                   ),
                   onPressed: (){
-                    value.setEmail(context,textEditingController.text);
+                    value.setEmail(context: context,email: textEditingController.text,id: widget.id);
 
                   }, child: Text("Update"))
 

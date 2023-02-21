@@ -1,9 +1,27 @@
+import 'package:fluid_dialog/fluid_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class GenderWidget extends StatelessWidget {
   String gender;
-  GenderWidget({required this.gender});
+  int id;
+  GenderWidget({required this.gender,required this.id});
 
+  // emailDialog(BuildContext context, String email,int id) {
+  //   showDialog(
+  //     context: context,
+  //     builder: (context) => FluidDialog(
+  //       // Set the first page of the dialog.
+  //       rootPage: FluidDialogPage(
+  //         alignment: Alignment.center, //Aligns the dialog to the bottom left.
+  //         builder: (context) => GenderDialog(
+  //           email: email,
+  //           id: id,
+  //         ), // This can be any widget.
+  //       ),
+  //     ),
+  //   );
+  //
+  // }
   @override
   Widget build(BuildContext context) {
     return ListTile(
@@ -27,7 +45,9 @@ class GenderWidget extends StatelessWidget {
             fontWeight: FontWeight.bold),
       ),
       trailing: IconButton(
-        onPressed: () {},
+        onPressed: () {
+          // emailDialog(context,,int id);
+        },
         icon: FaIcon(
           FontAwesomeIcons.edit,
           color: Colors.black,

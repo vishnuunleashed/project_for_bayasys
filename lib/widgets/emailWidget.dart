@@ -6,14 +6,15 @@ import 'emailDialog.dart';
 
 class EmailWidget extends StatefulWidget {
   String email;
-  EmailWidget({required this.email});
+  int id;
+  EmailWidget({required this.email,required this.id});
 
   @override
   State<EmailWidget> createState() => _EmailWidgetState();
 }
 
 class _EmailWidgetState extends State<EmailWidget> {
-  emailDialog(BuildContext context, String email) {
+  emailDialog(BuildContext context, String email,int id) {
     showDialog(
       context: context,
       builder: (context) => FluidDialog(
@@ -22,6 +23,7 @@ class _EmailWidgetState extends State<EmailWidget> {
           alignment: Alignment.center, //Aligns the dialog to the bottom left.
           builder: (context) => EmailDialog(
             email: email,
+            id: id,
           ), // This can be any widget.
         ),
       ),
@@ -57,7 +59,7 @@ class _EmailWidgetState extends State<EmailWidget> {
       ),
       trailing: IconButton(
         onPressed: () {
-          emailDialog(context, widget.email);
+          emailDialog(context, widget.email,widget.id);
 
         },
         icon: FaIcon(

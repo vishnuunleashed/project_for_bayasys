@@ -30,7 +30,7 @@ class _LandingScreenState extends State<LandingScreen> {
   @override
   void initState() {
     // MainData.insertInToDB(name: "vishnu", email: "admin@demo.com", phone: "1234567890", gender: "male", dob: "09/02/2023", maritalStatus: "single", occupation: "IT", tradingXp: "NIl", gir: "Nil", address: "Thodupuzha", profilePic: "123", aadharOne: "123"  , aadharTwo: "123", panPic: "123");
-    context.read<MainData>().getDataFromDB();
+
     super.initState();
   }
 
@@ -129,7 +129,7 @@ class _LandingScreenState extends State<LandingScreen> {
                 ),
               ),
               UserIdWidget(id: value.dataValue[0].id!),
-              EmailWidget(email: value.dataValue[0].email!),
+              EmailWidget(email: value.dataValue[0].email!,id: value.dataValue[0].id!),
               PhoneNumberWidget(phoneNumber: value.dataValue[0].phone!),
               GenderWidget(gender: value.dataValue[0].gender!),
               DOBWidget(),
