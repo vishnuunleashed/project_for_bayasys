@@ -3,7 +3,8 @@ import 'package:bayasys/provider/main_data_class.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../dialog/showSnackBar.dart';
+import '../utility/utility.dart';
+
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -81,7 +82,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       hintText: 'email',
                       hintStyle:
                       TextStyle(color: Colors.black.withOpacity(0.5)),
-                      prefixIcon: Icon(Icons.accessibility,
+                      prefixIcon: Icon(Icons.mail,
                           color: Theme.of(context).primaryColor),
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(15),

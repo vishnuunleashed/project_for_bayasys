@@ -45,6 +45,10 @@ dependencies:
   table_calendar: ^3.0.9
   intl: ^0.18.0
   shared_preferences: ^2.0.17
+  flutter_datetime_picker: ^1.5.1
+  image_picker: ^0.8.6
+  utility: ^1.0.3
+
 
 
 

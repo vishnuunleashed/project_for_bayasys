@@ -1,10 +1,12 @@
 
 
-import 'package:bayasys/dialog/showSnackBar.dart';
+
+import 'package:bayasys/pages/aadhar_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
 
 import '../modal/main_data_modal.dart';
+import '../utility/utility.dart';
 
 class MainData extends ChangeNotifier{
      String email = "";
@@ -105,7 +107,6 @@ class MainData extends ChangeNotifier{
 
      setPhone({required BuildContext context,required String phone,required int id}) async {
        final response = await db.rawQuery("UPDATE profile SET phone = '$phone' where id = $id");
-       print(response);
        getDataFromDB(id: id);
        Navigator.of(context).pop();
        notifyListeners();
@@ -113,9 +114,66 @@ class MainData extends ChangeNotifier{
 
      setGender({required BuildContext context,required String gender,required int id}) async {
        final response = await db.rawQuery("UPDATE profile SET gender = '$gender' where id = $id");
-       print("response is" + response.toString());
        getDataFromDB(id: id);
        Navigator.of(context).pop();
+       notifyListeners();
+     }
+
+     setDOB({required BuildContext context,required String dob,required int id}) async {
+       final response = await db.rawQuery("UPDATE profile SET dob = '$dob' where id = $id");
+       getDataFromDB(id: id);
+
+       notifyListeners();
+     }
+
+     setMarital({required BuildContext context,required String maritalStatus,required int id}) async {
+       final response = await db.rawQuery("UPDATE profile SET maritalStatus = '$maritalStatus' where id = $id");
+       getDataFromDB(id: id);
+       Navigator.of(context).pop();
+       notifyListeners();
+     }
+     setOccupation({required BuildContext context,required String occupation,required int id}) async {
+       final response = await db.rawQuery("UPDATE profile SET occupation = '$occupation' where id = $id");
+       getDataFromDB(id: id);
+       Navigator.of(context).pop();
+       notifyListeners();
+     }
+
+     setAddress({required BuildContext context,required String address,required int id}) async {
+       final response = await db.rawQuery("UPDATE profile SET address = '$address' where id = $id");
+       getDataFromDB(id: id);
+       Navigator.of(context).pop();
+       notifyListeners();
+     }
+
+
+     setGIR({required BuildContext context,required String gir,required int id}) async {
+       final response = await db.rawQuery("UPDATE profile SET gir = '$gir' where id = $id");
+       getDataFromDB(id: id);
+       Navigator.of(context).pop();
+       notifyListeners();
+     }
+
+
+     setTrading({required BuildContext context,required String tradingXp,required int id}) async {
+       final response = await db.rawQuery("UPDATE profile SET tradingXp = '$tradingXp' where id = $id");
+       getDataFromDB(id: id);
+       Navigator.of(context).pop();
+       notifyListeners();
+     }
+
+
+     setAadharOne({required BuildContext context,required String aadharOne,required int id}) async {
+       final response = await db.rawQuery("UPDATE profile SET aadharOne = '$aadharOne' where id = $id");
+       getDataFromDB(id: id);
+       Navigator.of(context).push(MaterialPageRoute(builder: (context)=>AadharScreen(id: id,index: 1,)));
+       notifyListeners();
+     }
+
+     setAadharTwo({required BuildContext context,required String aadharTwo,required int id}) async {
+       final response = await db.rawQuery("UPDATE profile SET aadharTwo = '$aadharTwo' where id = $id");
+       getDataFromDB(id: id);
+       Navigator.of(context).push(MaterialPageRoute(builder: (context)=>AadharScreen(id: id,index: 0,)));
        notifyListeners();
      }
 

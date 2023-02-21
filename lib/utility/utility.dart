@@ -1,4 +1,7 @@
 
+import 'dart:convert';
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 
 
@@ -23,4 +26,16 @@ void showError(BuildContext context, String message) {
 void showInfo(BuildContext context, String message) {
   showTopSnackBar(context, CustomSnackBar.info(message: message),
       displayDuration: Duration(seconds: 1));
+}
+
+class Utility{
+  static String base64String(Uint8List data){
+    return base64Encode(data);
+  }
+  static Image imageFromBase64String(String base64String){
+    return Image.memory(
+      base64Decode(base64String),
+      fit: BoxFit.cover,
+    );
+  }
 }

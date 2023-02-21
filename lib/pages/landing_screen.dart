@@ -1,23 +1,23 @@
 import 'package:bayasys/provider/main_data_class.dart';
-import 'package:bayasys/widgets/addressWidget.dart';
 
-import 'package:bayasys/widgets/emailWidget.dart';
-import 'package:bayasys/widgets/panWidget.dart';
-import 'package:bayasys/widgets/tradingExp.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:fluid_dialog/fluid_dialog.dart';
 import 'package:provider/provider.dart';
 
-import '../widgets/aadharWidget.dart';
-import '../widgets/dobWIdget.dart';
-import '../widgets/emailDialog.dart';
-import '../widgets/genderWidget.dart';
-import '../widgets/girWdiget.dart';
-import '../widgets/maritalStatus.dart';
-import '../widgets/occupationWidget.dart';
-import '../widgets/phoneNumberWidget.dart';
-import '../widgets/userIdWidget.dart';
+import '../widgets/LandingScreen/aadharWidget.dart';
+import '../widgets/LandingScreen/addressWidget.dart';
+import '../widgets/LandingScreen/dobWIdget.dart';
+import '../widgets/LandingScreen/emailWidget.dart';
+import '../widgets/LandingScreen/genderWidget.dart';
+import '../widgets/LandingScreen/girWdiget.dart';
+import '../widgets/LandingScreen/maritalStatusWidget.dart';
+import '../widgets/LandingScreen/occupationWidget.dart';
+import '../widgets/LandingScreen/panWidget.dart';
+import '../widgets/LandingScreen/phoneNumberWidget.dart';
+import '../widgets/LandingScreen/tradingExp.dart';
+
+import '../widgets/LandingScreen/userIdWidget.dart';
 
 class LandingScreen extends StatefulWidget {
   const LandingScreen({Key? key}) : super(key: key);
@@ -130,15 +130,15 @@ class _LandingScreenState extends State<LandingScreen> {
               ),
               UserIdWidget(id: value.dataValue[0].id!),
               EmailWidget(email: value.dataValue[0].email!,id: value.dataValue[0].id!),
-              PhoneNumberWidget(phoneNumber: value.dataValue[0].phone!),
+              PhoneNumberWidget(phoneNumber: value.dataValue[0].phone!,id: value.dataValue[0].id!),
               GenderWidget(gender: value.dataValue[0].gender!,id:  value.dataValue[0].id!),
-              DOBWidget(),
-              MaritalStatusWiget(maritalStatus: value.dataValue[0].maritalStatus!),
-              OccupationWidget(occupation: value.dataValue[0].occupation!),
-              TradingExpWidget(tradingExp: value.dataValue[0].tradingXp!),
-              GrossIncomeRangeWidget(gitValue: value.dataValue[0].gir!),
-              AddressWidget(address: value.dataValue[0].address!),
-              AadharWidget(status: "Photo Uploaded"),
+              DOBWidget(dob:value.dataValue[0].dob!,id:  value.dataValue[0].id! ),
+              MaritalStatusWidget(maritalStatus: value.dataValue[0].maritalStatus!,id:  value.dataValue[0].id! ),
+              OccupationWidget(occupation: value.dataValue[0].occupation!,id:  value.dataValue[0].id! ),
+              TradingExpWidget(tradingExp: value.dataValue[0].tradingXp!,id:  value.dataValue[0].id!),
+              GrossIncomeRangeWidget(gitValue: value.dataValue[0].gir!,id:  value.dataValue[0].id!),
+              AddressWidget(address: value.dataValue[0].address!,id:  value.dataValue[0].id!),
+              AadharWidget(status: "Photo Uploaded",id:  value.dataValue[0].id!),
               PanWidget(status: "Photo Uploaded"),
               SizedBox(
                 height: 15,

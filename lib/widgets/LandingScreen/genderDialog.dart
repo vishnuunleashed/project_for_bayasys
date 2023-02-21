@@ -1,4 +1,4 @@
-import 'package:bayasys/dialog/showSnackBar.dart';
+
 import 'package:bayasys/provider/main_data_class.dart';
 import 'package:fluid_dialog/fluid_dialog.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +6,8 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import 'package:table_calendar/table_calendar.dart';
+
+import '../../utility/utility.dart';
 
 class GenderDialog extends StatefulWidget {
   int id;

@@ -16,9 +16,7 @@ class EmailDialog extends StatefulWidget {
 class _EmailDialogState extends State<EmailDialog> {
   TextEditingController textEditingController = TextEditingController();
 
-  updateData(){
 
-  }
   @override
   void initState() {
 
