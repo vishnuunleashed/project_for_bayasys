@@ -38,4 +38,11 @@ class Utility{
       fit: BoxFit.cover,
     );
   }
+
+  static MemoryImage memoryImageFromBase64String(String base64String){
+    return MemoryImage(
+      base64Decode(base64String),
+
+    );
+  }
 }

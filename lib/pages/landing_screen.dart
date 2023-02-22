@@ -1,4 +1,6 @@
+import 'package:bayasys/pages/login.dart';
 import 'package:bayasys/provider/main_data_class.dart';
+import 'package:bayasys/utility/utility.dart';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -15,12 +17,14 @@ import '../widgets/LandingScreen/maritalStatusWidget.dart';
 import '../widgets/LandingScreen/occupationWidget.dart';
 import '../widgets/LandingScreen/panWidget.dart';
 import '../widgets/LandingScreen/phoneNumberWidget.dart';
+import '../widgets/LandingScreen/profile_name_pic.dart';
 import '../widgets/LandingScreen/tradingExp.dart';
 
 import '../widgets/LandingScreen/userIdWidget.dart';
 
 class LandingScreen extends StatefulWidget {
-  const LandingScreen({Key? key}) : super(key: key);
+  int id;
+  LandingScreen({required this.id}) ;
 
   @override
   State<LandingScreen> createState() => _LandingScreenState();
@@ -30,7 +34,7 @@ class _LandingScreenState extends State<LandingScreen> {
   @override
   void initState() {
     // MainData.insertInToDB(name: "vishnu", email: "admin@demo.com", phone: "1234567890", gender: "male", dob: "09/02/2023", maritalStatus: "single", occupation: "IT", tradingXp: "NIl", gir: "Nil", address: "Thodupuzha", profilePic: "123", aadharOne: "123"  , aadharTwo: "123", panPic: "123");
-    // context.read<MainData>().getDataFromDB();
+    context.read<MainData>().getDataFromDB(id: widget.id);
     super.initState();
   }
 
@@ -52,6 +56,14 @@ class _LandingScreenState extends State<LandingScreen> {
                 )),
           ),
         ),
+        actions: [
+          IconButton(onPressed: (){
+            Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>LoginScreen()));
+          }, icon:  FaIcon(
+            FontAwesomeIcons.rightFromBracket,
+            color: Colors.white,
+          ),)
+        ],
       ),
       body: Consumer<MainData>(builder: (context, value, child) {
         return SingleChildScrollView(
@@ -59,62 +71,7 @@ class _LandingScreenState extends State<LandingScreen> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 20),
-                child: Container(
-                  width: double.infinity,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          SizedBox(
-                            width: 15,
-                          ),
-                          CircleAvatar(
-                            radius: 40,
-                            foregroundImage: AssetImage('assets/avatar.png'),
-                          ),
-                          SizedBox(
-                            width: 15,
-                          ),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "User Name",
-                                style: TextStyle(
-                                    color: Theme.of(context).primaryColor,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              Text(
-                                "demo@demo.com",
-                                style: TextStyle(
-                                    color:
-                                        Theme.of(context).secondaryHeaderColor,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 16),
-                        child: IconButton(
-                            onPressed: () {},
-                            icon: FaIcon(
-                              FontAwesomeIcons.edit,
-                              color: Colors.black,
-                            )),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+              ProfileNameAndPicWidget(email: value.dataValue[0].email!,name: value.dataValue[0].name!,imageUrl: value.dataValue[0].profilePic!,id:  value.dataValue[0].id !),
               Divider(
                 thickness: 1,
               ),
@@ -139,7 +96,7 @@ class _LandingScreenState extends State<LandingScreen> {
               GrossIncomeRangeWidget(gitValue: value.dataValue[0].gir!,id:  value.dataValue[0].id!),
               AddressWidget(address: value.dataValue[0].address!,id:  value.dataValue[0].id!),
               AadharWidget(status: "Photo Uploaded",id:  value.dataValue[0].id!),
-              PanWidget(status: "Photo Uploaded"),
+              PanWidget(status: "Photo Uploaded",id:  value.dataValue[0].id!),
               SizedBox(
                 height: 15,
               ),
@@ -149,7 +106,9 @@ class _LandingScreenState extends State<LandingScreen> {
                   child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Theme.of(context).primaryColor),
-                      onPressed: () {},
+                      onPressed: () {
+                        showSuccess(context, "Changes Updated");
+                      },
                       child: Text("Submit")),
                 ),
               ),

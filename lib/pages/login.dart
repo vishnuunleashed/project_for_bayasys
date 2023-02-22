@@ -25,10 +25,9 @@ class _LoginScreenState extends State<LoginScreen> {
     if (_form!.validate()) {
       _form.save();
 
-        bool response = await context.read<MainData>().login(email: username, password: password);
+        bool response = await context.read<MainData>().login( context: context,email: username, password: password);
         if(response == true){
           showSuccess(context,"Login Success");
-          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>LandingScreen()));
         }else{
           showError(context,"Wrong Credentials");
         }

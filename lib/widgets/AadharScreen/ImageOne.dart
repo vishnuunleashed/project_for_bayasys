@@ -27,7 +27,7 @@ class _ImageOneState extends State<ImageOne> {
                 ? Padding(
               padding: EdgeInsets.only(top: MediaQuery.of(context).size.height / 4),
               child: Container(
-                child: Center(child: Text("Try Uploading Image Under 100kb")),
+                child: Center(child: Text("Try Uploading Image")),
               ),
             )
                 : Container(
@@ -48,7 +48,7 @@ class _ImageOneState extends State<ImageOne> {
                 //
                 // });
                 _picker
-                    .pickImage(source: ImageSource.gallery)
+                    .pickImage(source: ImageSource.camera)
                     .then((imgFile) async {
                   Uint8List file = await imgFile!.readAsBytes();
                   String imgString = Utility.base64String(file);

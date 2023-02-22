@@ -1,8 +1,10 @@
+import 'package:bayasys/pages/pan_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class PanWidget extends StatefulWidget {
   String status;
-  PanWidget({required this.status});
+  int id;
+  PanWidget({required this.status,required this.id});
 
   @override
   State<PanWidget> createState() => _PanWidgetState();
@@ -32,7 +34,10 @@ class _PanWidgetState extends State<PanWidget> {
             fontWeight: FontWeight.bold),
       ),
       trailing: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>PanScreen(id: widget.id)));
+
+          },
           icon: FaIcon(
             FontAwesomeIcons.edit,
             color: Colors.black,

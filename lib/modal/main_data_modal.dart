@@ -37,21 +37,21 @@ class MainDataModal{
   factory MainDataModal.fromJson(Map<String, dynamic> json) {
     return MainDataModal(
       id: json["id"],
-      name: json["name"],
+      name: json["name"]??"User Name",
       email: json["email"],
-      phone: json["phone"]??"",
-      gender: json["gender"]??" ",
-      dob: json["dob"]??" ",
-      maritalStatus: json["maritalStatus"]??" ",
-      occupation: json["occupation"]??" ",
-      tradingXp: json["tradingXp"]??" ",
-      gir: json["gir"]??" ",
-      address: json["address"]??" ",
+      phone: json["phone"]??"01234567890",
+      gender: json["gender"]??"Select Gender",
+      dob: json["dob"]??"Select DOB",
+      maritalStatus: json["maritalStatus"]??"Select Marital Status",
+      occupation: json["occupation"]??"Select Occupation",
+      tradingXp: json["tradingXp"]??"Select a Range",
+      gir: json["gir"]??"Select a Range",
+      address: json["address"]??"Enter an Address",
       profilePic: json["profilePic"]??" ",
       aadharOne: json["aadharOne"]??" ",
       aadharTwo: json["aadharTwo"]??" ",
       panPic: json["panPic"]??" ",
-      password: json["password"]??" ",
+      password: json["password"],
     );
   }
 

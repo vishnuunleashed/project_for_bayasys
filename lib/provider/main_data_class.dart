@@ -2,6 +2,8 @@
 
 
 import 'package:bayasys/pages/aadhar_screen.dart';
+import 'package:bayasys/pages/landing_screen.dart';
+import 'package:bayasys/pages/pan_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -56,7 +58,7 @@ class MainData extends ChangeNotifier{
 
   }
 
-  Future login({required String email,required String password}) async {
+  Future login({required BuildContext context,required String email,required String password}) async {
     this.email = email;
     this.password = password;
 
@@ -65,10 +67,12 @@ class MainData extends ChangeNotifier{
     print(responses);
     if (responses.length == 1){
       if (responses.isNotEmpty) {
-
+        dataValue.clear();
         responses.forEach((element) {
           dataValue.add(MainDataModal.fromJson(element));
         });
+        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>LandingScreen(id: dataValue[0].id!,)));
+
         return true;
       } else {
         return false;
@@ -176,6 +180,30 @@ class MainData extends ChangeNotifier{
        Navigator.of(context).push(MaterialPageRoute(builder: (context)=>AadharScreen(id: id,index: 0,)));
        notifyListeners();
      }
+
+
+     setPanPic({required BuildContext context,required String panPic,required int id}) async {
+       final response = await db.rawQuery("UPDATE profile SET panPic = '$panPic' where id = $id");
+       getDataFromDB(id: id);
+       Navigator.of(context).push(MaterialPageRoute(builder: (context)=>PanScreen(id: id)));
+       notifyListeners();
+     }
+
+     setProfilePic({required BuildContext context,required String profilePic,required int id}) async {
+       final response = await db.rawQuery("UPDATE profile SET profilePic = '$profilePic' where id = $id");
+       getDataFromDB(id: id);
+       Navigator.of(context).push(MaterialPageRoute(builder: (context)=>LandingScreen(  id: id,)));
+       notifyListeners();
+     }
+
+
+     setName({required BuildContext context,required String name,required int id}) async {
+       final response = await db.rawQuery("UPDATE profile SET name = '$name' where id = $id");
+       getDataFromDB(id: id);
+       Navigator.of(context).pop();
+       notifyListeners();
+     }
+
 
 
 }
