@@ -60,7 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text("Login",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,color: Theme.of(context).primaryColor)),
+              Text("Login / Register",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,color: Theme.of(context).primaryColor)),
               Padding(
                 padding: EdgeInsets.only(left: 40, right: 40, top: 40),
                 child: Container(
@@ -74,7 +74,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       username = val;
                     },
                     validator: (input) => !input!.contains('@')
-                        ? "Should be more valid username"
+                        ? "Should be a valid username"
                         : null,
                     decoration: InputDecoration(
                       contentPadding: EdgeInsets.all(20),

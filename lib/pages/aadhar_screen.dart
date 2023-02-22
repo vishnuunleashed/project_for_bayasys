@@ -1,10 +1,15 @@
+import 'package:bayasys/pages/landing_screen.dart';
 import 'package:bayasys/widgets/AadharScreen/ImageOne.dart';
 import 'package:bayasys/widgets/AadharScreen/ImageTwo.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
+
+import '../provider/main_data_class.dart';
 class AadharScreen extends StatefulWidget {
   int id;
-  int index;
-  AadharScreen({required this.id,required this.index});
+
+  AadharScreen({required this.id});
 
   @override
   State<AadharScreen> createState() => _AadharScreenState();
@@ -14,7 +19,8 @@ class _AadharScreenState extends State<AadharScreen> {
   int bottomNavBarIndex = 0;
   @override
   void initState() {
-    bottomNavBarIndex = widget.index!;
+
+    context.read<MainData>().getDataFromDB(id: widget.id);
     super.initState();
   }
   @override
@@ -53,6 +59,16 @@ class _AadharScreenState extends State<AadharScreen> {
         ],
       ),
       appBar: AppBar(
+        automaticallyImplyLeading: false,
+        leading: IconButton(
+          onPressed: (){
+            Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>LandingScreen(id: widget.id,)));
+          },
+          icon: FaIcon(
+            FontAwesomeIcons.arrowLeft,
+            color: Colors.white,
+          ),
+        ),
         toolbarHeight: 80,
         backgroundColor: Theme.of(context).primaryColor,
         bottom: PreferredSize(

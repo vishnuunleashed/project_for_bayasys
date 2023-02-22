@@ -17,6 +17,8 @@ class MainData extends ChangeNotifier{
 
   DateTime? selectedDay;
 
+  late BuildContext dialogContext;
+
   void setSelectedDay(DateTime date){
     selectedDay = date;
     notifyListeners();
@@ -96,7 +98,10 @@ class MainData extends ChangeNotifier{
     dataValue.clear();
     responses.forEach((element) {
       dataValue.add(MainDataModal.fromJson(element));
+      notifyListeners();
     });
+
+    print(dataValue[0].email);
 
 
   }
@@ -117,9 +122,11 @@ class MainData extends ChangeNotifier{
      }
 
      setGender({required BuildContext context,required String gender,required int id}) async {
+
        final response = await db.rawQuery("UPDATE profile SET gender = '$gender' where id = $id");
        getDataFromDB(id: id);
-       Navigator.of(context).pop();
+
+
        notifyListeners();
      }
 
@@ -133,7 +140,7 @@ class MainData extends ChangeNotifier{
      setMarital({required BuildContext context,required String maritalStatus,required int id}) async {
        final response = await db.rawQuery("UPDATE profile SET maritalStatus = '$maritalStatus' where id = $id");
        getDataFromDB(id: id);
-       Navigator.of(context).pop();
+
        notifyListeners();
      }
      setOccupation({required BuildContext context,required String occupation,required int id}) async {
@@ -152,47 +159,72 @@ class MainData extends ChangeNotifier{
 
 
      setGIR({required BuildContext context,required String gir,required int id}) async {
+
        final response = await db.rawQuery("UPDATE profile SET gir = '$gir' where id = $id");
        getDataFromDB(id: id);
-       Navigator.of(context).pop();
+
+
+
        notifyListeners();
      }
 
 
      setTrading({required BuildContext context,required String tradingXp,required int id}) async {
+
        final response = await db.rawQuery("UPDATE profile SET tradingXp = '$tradingXp' where id = $id");
        getDataFromDB(id: id);
-       Navigator.of(context).pop();
+
+
+
+
        notifyListeners();
      }
 
 
      setAadharOne({required BuildContext context,required String aadharOne,required int id}) async {
-       final response = await db.rawQuery("UPDATE profile SET aadharOne = '$aadharOne' where id = $id");
-       getDataFromDB(id: id);
-       Navigator.of(context).push(MaterialPageRoute(builder: (context)=>AadharScreen(id: id,index: 1,)));
+
+       final response = await db.rawQuery("UPDATE profile SET aadharOne = '$aadharOne' where id = $id").then((value){
+         getDataFromDB(id: id);
+       });
+
+
+
        notifyListeners();
      }
 
      setAadharTwo({required BuildContext context,required String aadharTwo,required int id}) async {
-       final response = await db.rawQuery("UPDATE profile SET aadharTwo = '$aadharTwo' where id = $id");
-       getDataFromDB(id: id);
-       Navigator.of(context).push(MaterialPageRoute(builder: (context)=>AadharScreen(id: id,index: 0,)));
+
+       final response = await db.rawQuery("UPDATE profile SET aadharTwo = '$aadharTwo' where id = $id").then((value) {
+         getDataFromDB(id: id);
+       });
+
+
+
        notifyListeners();
      }
 
 
      setPanPic({required BuildContext context,required String panPic,required int id}) async {
-       final response = await db.rawQuery("UPDATE profile SET panPic = '$panPic' where id = $id");
-       getDataFromDB(id: id);
-       Navigator.of(context).push(MaterialPageRoute(builder: (context)=>PanScreen(id: id)));
+
+       final response = await db.rawQuery("UPDATE profile SET panPic = '$panPic' where id = $id").then((value) {
+         getDataFromDB(id: id);
+       });
+
+
+
+
+
+
        notifyListeners();
      }
 
      setProfilePic({required BuildContext context,required String profilePic,required int id}) async {
+
        final response = await db.rawQuery("UPDATE profile SET profilePic = '$profilePic' where id = $id");
        getDataFromDB(id: id);
-       Navigator.of(context).push(MaterialPageRoute(builder: (context)=>LandingScreen(  id: id,)));
+
+
+
        notifyListeners();
      }
 

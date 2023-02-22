@@ -4,11 +4,13 @@ import 'package:bayasys/provider/main_data_class.dart';
 import 'package:bayasys/widgets/AadharScreen/ImageOne.dart';
 import 'package:bayasys/widgets/AadharScreen/ImageTwo.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 import '../utility/utility.dart';
+import 'landing_screen.dart';
 
 class PanScreen extends StatefulWidget {
   int id;
@@ -26,10 +28,36 @@ class _PanScreenState extends State<PanScreen> {
     super.initState();
   }
 
+  Future<Uint8List> testComporessList(Uint8List list) async {
+    var result = await FlutterImageCompress.compressWithList(
+      list,
+      minHeight: 800,
+      minWidth: 768,
+      quality: 96,
+      rotate: 0,
+    );
+    print(list.length);
+    print(result.length);
+    return result;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
+          leading: IconButton(
+            onPressed: () {
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                  builder: (context) => LandingScreen(
+                        id: widget.id,
+                      )));
+            },
+            icon: FaIcon(
+              FontAwesomeIcons.arrowLeft,
+              color: Colors.white,
+            ),
+          ),
           toolbarHeight: 80,
           backgroundColor: Theme.of(context).primaryColor,
           bottom: PreferredSize(
@@ -51,9 +79,7 @@ class _PanScreenState extends State<PanScreen> {
                 ? Padding(
                     padding: EdgeInsets.only(
                         top: MediaQuery.of(context).size.height / 4),
-                    child: Container(
-                      child: Center(child: Text("Try Uploading Image")),
-                    ),
+                    child: Container(),
                   )
                 : Container(
                     width: MediaQuery.of(context).size.width,
@@ -76,6 +102,7 @@ class _PanScreenState extends State<PanScreen> {
                     .pickImage(source: ImageSource.camera)
                     .then((imgFile) async {
                   Uint8List file = await imgFile!.readAsBytes();
+                  file = await testComporessList(file);
                   String imgString = Utility.base64String(file);
                   value.setPanPic(
                       context: context, panPic: imgString, id: widget.id);

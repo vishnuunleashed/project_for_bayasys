@@ -36,7 +36,7 @@ class _AadharWidgetState extends State<AadharWidget> {
       ),
       trailing: IconButton(
           onPressed: () {
-            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>AadharScreen(id: widget.id,index: 0,)));
+            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>AadharScreen(id: widget.id)));
           },
           icon: FaIcon(
             FontAwesomeIcons.edit,
